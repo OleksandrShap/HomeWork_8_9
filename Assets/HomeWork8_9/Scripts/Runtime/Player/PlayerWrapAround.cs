@@ -6,8 +6,7 @@ public class PlayerWrapAround : MonoBehaviour
 
     private float _leftLimit;
     private float _rightLimit;
-    private float _topLimit;
-    private float _botLimit;
+    
 
     private void Start()
     {
@@ -37,10 +36,7 @@ public class PlayerWrapAround : MonoBehaviour
         {
             bufferPosition.x = _leftLimit;
         }
-        else if (bufferPosition.y < -7.76f)
-        {
-            bufferPosition.y = 6.43f;
-        }
+       
         transform.position = bufferPosition;
     }
 }

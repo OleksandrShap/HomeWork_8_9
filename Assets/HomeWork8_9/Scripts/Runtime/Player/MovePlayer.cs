@@ -11,10 +11,10 @@ public class MovePlayer : MonoBehaviour
     private bool _isJump = false;
     private bool _isGrounded = false;
 
-    // Update is called once per frame
+    
     void Update()
     {
-        CalculateJump();
+        CalculateMove();
     }
 
     private void FixedUpdate()
@@ -26,7 +26,7 @@ public class MovePlayer : MonoBehaviour
         }
     }
 
-    private void CalculateJump()
+    private void CalculateMove()
     {
         _isGrounded = Physics2D.Raycast(_playerRb.position, Vector2.down, _groundCheckDastance, _groundMask);
         Debug.DrawRay(_playerRb.position, Vector2.down * _groundCheckDastance, Color.red);
