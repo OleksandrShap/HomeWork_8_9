@@ -8,7 +8,7 @@ public class CameraFollow : MonoBehaviour
 
     private Vector3 _offset;
     
-    private void LateUpdate()
+    private void LateUpdate()    
     {
         UpdateCameraPosition();
     }
@@ -16,7 +16,7 @@ public class CameraFollow : MonoBehaviour
     private void UpdateCameraPosition()
     {
         //if (transform.position.y > _target.position.y) return;
-
+        _offset = new Vector3(1f,-0.5f, _target.position.z);
         Vector3 desifedPosition = _target.position + _offset;
         Vector3 smoothPositon = Vector3.Lerp(transform.position, desifedPosition, _speed);
 

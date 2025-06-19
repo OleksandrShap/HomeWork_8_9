@@ -28,7 +28,8 @@ public class MovePlayer : MonoBehaviour
 
     private void CalculateMove()
     {
-        _isGrounded = Physics2D.Raycast(_playerRb.position, Vector2.down, _groundCheckDastance, _groundMask);
+        RaycastHit2D hit = Physics2D.Raycast(_playerRb.position, Vector2.down, _groundCheckDastance, _groundMask);
+        _isGrounded = hit.collider != null;
         Debug.DrawRay(_playerRb.position, Vector2.down * _groundCheckDastance, Color.red);
 
         float movement = Input.GetAxis("Horizontal");
