@@ -1,22 +1,25 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
-    [SerializeField] protected Transform _target;
-    [SerializeField] protected Collider2D _collider;
-    protected bool _isInitiated;
+    [SerializeField] protected Transform _targetPlayer;
+    [SerializeField] private Rigidbody2D _playerRb;
+    //[SerializeField] protected Transform _targetPlatform;
+       
 
-    private void Init(Transform target)
-    {
-        _target = target;
-        _isInitiated = true;
-    }
+    [SerializeField] private List<ActionBase> _executeWhenTouch;
 
-    protected virtual void OnUpdatePlatform()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(_target.position.y > transform.position.y)
-            _collider.enabled = true;
-        else
-            _collider.enabled = false;
+        if (collision.gameObject.TryGetComponent<MovePlayer>(out var moveplayer))
+        {
+            foreach (ActionBase action in _executeWhenTouch)
+            {
+                //if (_playerRb.linearVelocity.y < 0)
+                    action.Execute();
+            }
+        }
     }
 }

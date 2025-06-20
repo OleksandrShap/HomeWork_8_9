@@ -14,7 +14,7 @@ public class MovePlayer : MonoBehaviour
     
     void Update()
     {
-        CalculateMove();
+        CaclculateJump();
     }
 
     private void FixedUpdate()
@@ -24,30 +24,37 @@ public class MovePlayer : MonoBehaviour
             _playerRb.linearVelocity = Vector2.up * _jumpForce;
             _isJump = false;
         }
+
+        CalculateMove();
     }
 
-    private void CalculateMove()
+    private void CaclculateJump()
     {
         RaycastHit2D hit = Physics2D.Raycast(_playerRb.position, Vector2.down, _groundCheckDastance, _groundMask);
         _isGrounded = hit.collider != null;
         Debug.DrawRay(_playerRb.position, Vector2.down * _groundCheckDastance, Color.red);
+       
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _isJump = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            _isJump = false;
+        }
+    }
 
+    private void CalculateMove()
+    {
         float movement = Input.GetAxis("Horizontal");
+
         _playerRb.linearVelocity = new Vector2(movement * _speed, _playerRb.linearVelocity.y);
 
         if (_isFacing && movement < 0)
             Flip();
         else if (!_isFacing && movement > 0)
             Flip();
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            _isJump = true;
-        }
-        else if(Input.GetKeyUp(KeyCode.Space))
-        {
-            _isJump = false;
-        }
+               
     }
 
 
