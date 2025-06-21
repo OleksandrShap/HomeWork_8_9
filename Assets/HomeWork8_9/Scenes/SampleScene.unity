@@ -150,8 +150,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _platformPrefab: {fileID: 829645871073857212, guid: dbca401fc9ebdf34ea2adc6d7e6a78a4, type: 3}
   _platFormParent: {fileID: 912947474}
-  _initialPlatform: 5
-  _distanceBetweenPlatform: 4
+  _initialPlatform: 10
+  _distanceBetweenPlatform: 2
   _playerTransform: {fileID: 1709673139}
   _screenLeftX: -4
   _screenRightX: 4
@@ -478,7 +478,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 829645871073857212, guid: dbca401fc9ebdf34ea2adc6d7e6a78a4, type: 3}
       propertyPath: m_Name
-      value: Platform_for_start
+      value: PlatformStart
       objectReference: {fileID: 0}
     - target: {fileID: 5872499971139088049, guid: dbca401fc9ebdf34ea2adc6d7e6a78a4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -521,6 +521,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8515809383249280198, guid: dbca401fc9ebdf34ea2adc6d7e6a78a4, type: 3}
+      propertyPath: _rb
+      value: 
+      objectReference: {fileID: 1709673137}
+    - target: {fileID: 8515809383249280198, guid: dbca401fc9ebdf34ea2adc6d7e6a78a4, type: 3}
       propertyPath: _playerRb
       value: 
       objectReference: {fileID: 1709673137}
@@ -528,6 +532,10 @@ PrefabInstance:
       propertyPath: _targetPlayer
       value: 
       objectReference: {fileID: 1709673139}
+    - target: {fileID: 8515809383249280198, guid: dbca401fc9ebdf34ea2adc6d7e6a78a4, type: 3}
+      propertyPath: _changeDestroy
+      value: 0.9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -549,7 +557,7 @@ GameObject:
   - component: {fileID: 1709673140}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -567,7 +575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerRb: {fileID: 1709673137}
-  _jumpForce: 10
+  _jumpForce: 7
   _groundCheckDastance: 0.6
   _groundMask:
     serializedVersion: 2

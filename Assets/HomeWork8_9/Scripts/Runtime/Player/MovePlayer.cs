@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class MovePlayer : MonoBehaviour
@@ -7,6 +8,9 @@ public class MovePlayer : MonoBehaviour
     [SerializeField] private float _groundCheckDastance = 0.2f;
     [SerializeField] private LayerMask _groundMask;
     [SerializeField] private float _speed = 5f;
+
+    [NonSerialized] public bool _isMoveVectorCheck;
+
     private bool _isFacing = true;
     private bool _isJump = false;
     private bool _isGrounded = false;
@@ -15,6 +19,7 @@ public class MovePlayer : MonoBehaviour
     void Update()
     {
         CaclculateJump();
+        CheckMoveVector();
     }
 
     private void FixedUpdate()
@@ -64,5 +69,13 @@ public class MovePlayer : MonoBehaviour
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
+    }
+
+    public void CheckMoveVector()
+    {
+        if(_playerRb.linearVelocity.y < -0.1f)
+            _isMoveVectorCheck = true;
+        else
+            _isMoveVectorCheck = false;
     }
 }
