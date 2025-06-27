@@ -15,7 +15,7 @@ public class Platform : MonoBehaviour
         {
             foreach (ActionBase action in _executeWhenTouch)
             {
-                if (moveplayer._isMoveVectorCheck && Random.value < _changeDestroy)
+                if (moveplayer.IsMoveVectorCheck && Random.value < _changeDestroy)
                 {
                     action.Execute();
                     Destroy(gameObject, 0.8f);

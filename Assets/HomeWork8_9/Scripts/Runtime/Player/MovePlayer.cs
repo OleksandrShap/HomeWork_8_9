@@ -9,18 +9,22 @@ public class MovePlayer : MonoBehaviour
     [SerializeField] private LayerMask _groundMask;
     [SerializeField] private float _speed = 5f;
 
-    [NonSerialized] public bool _isMoveVectorCheck;
+    //private bool _isMoveVectorCheck;
+
+    public bool IsMoveVectorCheck { get; private set; }
 
     private bool _isFacing = true;
     private bool _isJump = false;
     private bool _isGrounded = false;
 
-    
     void Update()
     {
         CaclculateJump();
         CheckMoveVector();
+        SignalDistanceChange();
     }
+
+   
 
     private void FixedUpdate()
     {
@@ -74,8 +78,22 @@ public class MovePlayer : MonoBehaviour
     public void CheckMoveVector()
     {
         if(_playerRb.linearVelocity.y < -0.1f)
-            _isMoveVectorCheck = true;
+            IsMoveVectorCheck = true;
         else
-            _isMoveVectorCheck = false;
+            IsMoveVectorCheck = false;
+    }
+
+    private int CalculateDistance(float currentDistance, int playerDistance)
+    {
+        if (playerDistance < currentDistance)
+        {
+            return (int)currentDistance;
+        }
+        return playerDistance;
+    }
+    private void SignalDistanceChange()
+    {
+        PlayerModel.Distance = CalculateDistance(transform.position.y, PlayerModel.Distance);
+        GameEvenBas.OnDistanceChange?.Invoke();
     }
 }
