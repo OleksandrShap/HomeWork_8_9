@@ -12,6 +12,7 @@ public class MovePlayer : MonoBehaviour
     //private bool _isMoveVectorCheck;
 
     public bool IsMoveVectorCheck { get; private set; }
+    public bool IsGameOver { get; private set; }
 
     private bool _isFacing = true;
     private bool _isJump = false;
@@ -66,7 +67,6 @@ public class MovePlayer : MonoBehaviour
                
     }
 
-
     private void Flip()
     {
         _isFacing = !_isFacing;
@@ -79,6 +79,8 @@ public class MovePlayer : MonoBehaviour
     {
         if(_playerRb.linearVelocity.y < -0.1f)
             IsMoveVectorCheck = true;
+        else if(_playerRb.linearVelocity.y < 5f)
+            IsGameOver = true;
         else
             IsMoveVectorCheck = false;
     }
@@ -94,6 +96,6 @@ public class MovePlayer : MonoBehaviour
     private void SignalDistanceChange()
     {
         PlayerModel.Distance = CalculateDistance(transform.position.y, PlayerModel.Distance);
-        GameEvenBas.OnDistanceChange?.Invoke();
+        GameEvenBas.ChangeDistance(PlayerModel.Distance);
     }
 }

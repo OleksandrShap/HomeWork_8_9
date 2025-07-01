@@ -150,9 +150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c65c2f66c4838f45a2ffb8a623b5987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetPlayer: {fileID: 0}
   _executeWhenTouch:
   - {fileID: 2993630403796965363}
+  _changeDestroy: 0.2
 --- !u!1 &7532898802894663504
 GameObject:
   m_ObjectHideFlags: 0

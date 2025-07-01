@@ -15,31 +15,44 @@ public class GameView : MonoBehaviour
         SubscribeToEvents();
     }
 
-   
     private void Start()
     {
-        
+        Initialise();
     }
 
+   
     private void OnDisable()
     {
        UnSubscribeFromEvents();
     }
 
+    private void Initialise()
+    {
+        OnDistanceChanged(PlayerModel.Distance);
+        OnCoinValueChanged(PlayerModel.Coin);
+    }
+
     private void SubscribeToEvents()
     {
         GameEvenBas.OnDistanceChange += OnDistanceChanged;
+        GameEvenBas.OnCoinCountChanged += OnCoinValueChanged;
     }
 
     
     private void UnSubscribeFromEvents()
     {
         GameEvenBas.OnDistanceChange -= OnDistanceChanged;
+        GameEvenBas.OnCoinCountChanged -= OnCoinValueChanged;
     }
 
-    private void OnDistanceChanged()
+    private void OnDistanceChanged(int distance)
     {
-        _distanceText.text = $"Distance: {Time.deltaTime}";
+        _distanceText.text = $"Distance: {distance}";
+    }
+
+    private void OnCoinValueChanged(int coinCount)
+    {
+        _coinText.text = $"Coin: {coinCount}";
     }
 
 }

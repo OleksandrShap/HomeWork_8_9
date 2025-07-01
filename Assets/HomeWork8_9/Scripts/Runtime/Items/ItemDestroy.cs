@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ItemDestroy : MonoBehaviour
 {
+    [SerializeField] private int _cost = 1;
     private ParticleSystem _particleSystem;
     private SpriteRenderer _spriteRenderer;
 
@@ -14,6 +15,8 @@ public class ItemDestroy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && _particleSystem != null)
         {
+            PlayerModel.Coin += _cost;
+            GameEvenBas.ChangeCoinCount(PlayerModel.Coin);
             _particleSystem.Play();
             _spriteRenderer.enabled = false;
             Destroy(gameObject, 1f);
