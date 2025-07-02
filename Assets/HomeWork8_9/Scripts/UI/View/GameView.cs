@@ -36,6 +36,7 @@ public class GameView : MonoBehaviour
     {
         GameEvenBas.OnDistanceChange += OnDistanceChanged;
         GameEvenBas.OnCoinCountChanged += OnCoinValueChanged;
+        
     }
 
     
