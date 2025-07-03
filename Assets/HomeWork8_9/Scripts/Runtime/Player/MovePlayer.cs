@@ -77,10 +77,17 @@ public class MovePlayer : MonoBehaviour
 
     public void CheckMoveVector()
     {
-        if(_playerRb.linearVelocity.y < -0.1f)
+         
+        if (_playerRb.linearVelocity.y < -0.1f)
+        {
             IsMoveVectorCheck = true;
-        else if(_playerRb.linearVelocity.y < 5f)
-            IsGameOver = true;
+
+            if(_playerRb.linearVelocity.y < -15f )
+            {
+                IsGameOver = true;
+                //Time.timeScale = 0f;
+            }
+        }
         else
             IsMoveVectorCheck = false;
     }

@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class GameView : MonoBehaviour
 {
+    [SerializeField] private ViewManager _viewManager;
+    [SerializeField] private MovePlayer _movePlayer;
+
     [SerializeField] private TMP_Text _distanceText;
     [SerializeField] private TextMeshProUGUI _coinText;
     [SerializeField] private Button _toMenuButton;
@@ -20,7 +23,11 @@ public class GameView : MonoBehaviour
         Initialise();
     }
 
-   
+    private void Update()
+    {
+        CheckGameOver();
+    }
+
     private void OnDisable()
     {
        UnSubscribeFromEvents();
@@ -36,6 +43,7 @@ public class GameView : MonoBehaviour
     {
         GameEvenBas.OnDistanceChange += OnDistanceChanged;
         GameEvenBas.OnCoinCountChanged += OnCoinValueChanged;
+        _toMenuButton.onClick.AddListener(() => _viewManager.ActivateView(1));
         
     }
 
@@ -44,6 +52,8 @@ public class GameView : MonoBehaviour
     {
         GameEvenBas.OnDistanceChange -= OnDistanceChanged;
         GameEvenBas.OnCoinCountChanged -= OnCoinValueChanged;
+       
+        _toMenuButton.onClick.RemoveAllListeners();
     }
 
     private void OnDistanceChanged(int distance)
@@ -54,6 +64,12 @@ public class GameView : MonoBehaviour
     private void OnCoinValueChanged(int coinCount)
     {
         _coinText.text = $"Coin: {coinCount}";
+    }
+    private void CheckGameOver()
+    {
+        if (_movePlayer.IsGameOver)
+            _viewManager.ActivateView(2);
+
     }
 
 }

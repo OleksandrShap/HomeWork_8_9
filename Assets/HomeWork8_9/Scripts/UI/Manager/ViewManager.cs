@@ -28,4 +28,5 @@ public class ViewManager : MonoBehaviour
 
         _views[id].enabled = true;
     }
+
 }
